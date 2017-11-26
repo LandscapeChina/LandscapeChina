@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/easyui.css" />
+    <style>
+        #root{
+            height: 100%;
+            position: relative;
+            background-image: url("/img/register_3.jpg");
+            background-size: cover;
+        }
+        #d2{
+            border-radius: 15px;
+            background-color: #daeeff;
+            width:300px;
+            height: 400px;
+            position: absolute;
+            left: 70%;
+            top:15%;
+        }
+        h1{
+
+            font-style: normal;
+            font-family: 微软雅黑;
+            text-align: center;
+            color: grey;
+            margin-top: 20px;
+            font-weight: 600;
+
+        }
+        #font{
+            font-family: 微软雅黑;
+            color: white;
+        }
+        #f1{
+            width: 300px;
+            padding-left: 10px;
+            padding-right:10px;
+            display: block;
+            margin-top: 5px;
+        }
+        input[type=text]{
+            border: 1px gainsboro solid;
+            border-radius: 0px 5px 0px 0px;
+        }
+
+        input[type=password]{
+
+            border: 1px gainsboro solid;
+            border-radius: 0px 0px 5px 0px;
+        }
+        #d4{
+            margin-top: 15px;
+        }
+        #d6{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        button{
+            margin-top: 0px;
+            font-weight: 800;
+            border-radius: 5px;
+        }
+
+        #msg{
+            font-size: 5px;
+            display: flex;
+            align-items: center;
+            color: red;
+            padding-left: 10px;
+            height: 8px;
+        }
+    </style>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+
+
+
+</head>
+<body>
+<div id="root">
+        <div  id="d2" >
+            <h1>山 水 中 国</h1>
+            <form id="f1" method="post" class="form-group">
+                <div class="input-group" style="margin-top: 10px">
+                    <span class="input-group-addon">手机</span> <input type="text" name="tel" id="tel" placeholder="请输入手机号 " class="form-control">
+                </div>
+                <div  class="input-group" style="margin-top: 10px">
+                    <span class="input-group-addon">昵称</span> <input type="text"   name="account" placeholder="请输入昵称" class="form-control">
+                </div>
+                <div  class="input-group" style="margin-top: 10px">
+                    <span class="input-group-addon">密码</span> <input type="password"   name="password" placeholder="请输入密码" class="form-control">
+                </div>
+                <div  class="input-group" style="margin-top: 10px">
+                    <span class="input-group-addon">密码</span> <input type="password"  name="password" placeholder="请再次输入密码" class="form-control">
+                </div>
+                <div  class="input-group" style="margin-top: 10px;width: 150px">
+                    <span class="input-group-addon">验证码</span> <input type="text"   name="" placeholder="验证码"  class="form-control">
+
+                </div>
+                <button class="btn btn-info" onclick="setTime(this)" id="identcode" disabled style="position: absolute;left: 170px;top: 266px;">获取验证码</button>
+            </form>
+            <div id="d6"><button id="register" class="btn btn-success btn-block" onclick="register()"><span id="font">登&nbsp;&nbsp;&nbsp;录</span></button></div>
+        </div>
+</div>
+</body>
+<script src="/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/history/index.js" type="text/javascript" charset="utf-8"></script>
+</html>
+

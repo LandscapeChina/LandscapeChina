@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-lazy-init="true"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.1.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+    <context:component-scan base-package="com.history"/>
+    <!-- AOP Configuration -->
+ <!--   <aop:config>
+
+        <aop:advisor id="methodTrace" advice-ref="methodTraceAdvice"
+                     pointcut="execution(* *..*Service.*(..))" order="3" />
+        <aop:advisor id="serviceTx" advice-ref="txAdvice"
+                     pointcut="execution(* *..*Service.*(..))" order="4" />
+    </aop:config>
+
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    &lt;!&ndash; Transaction Advisor&ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="doFind*" read-only="true" propagation="SUPPORTS" rollback-for="java.lang.Exception"/>
+            <tx:method name="doGet*" read-only="true" propagation="SUPPORTS" rollback-for="java.lang.Exception"/>
+            <tx:method name="do*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="ido*" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" propagation="SUPPORTS" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <bean id="methodTraceAdvice" class="com.cea.callcenter.MethodTraceAdvice">
+        <property name="enabledMethodTrace" value="false" />
+    </bean>-->
+</beans>
