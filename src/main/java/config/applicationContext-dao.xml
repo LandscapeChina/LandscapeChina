@@ -20,7 +20,6 @@
         http://www.springframework.org/schema/util/spring-util.xsd">
     <context:annotation-config/>
     <context:component-scan base-package="com.history"/>
-
     <!-- 连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -28,7 +27,6 @@
         <property name="username" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
-
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -40,4 +38,11 @@
         <property name="basePackage" value="com.history.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
+    <!-- transaction support-->
+    <!-- PlatformTransactionMnager -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- enable transaction annotation support -->
+    <tx:annotation-driven proxy-target-class="false" transaction-manager="txManager" />
 </beans>
