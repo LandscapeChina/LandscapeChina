@@ -15,13 +15,13 @@ public class UserController {
     //获取验证码
     @RequestMapping("Code.html")
     @ResponseBody
-  public int getCode(User user){
-       int code=userService.getCode(user);
+  public String getCode(User user){
+       String code=userService.getCode(user);
        return  code;
   }
   @RequestMapping("register.html")
   @ResponseBody
-  public int register(User user){
-      return userService.register(user);
+  public String register(User user){
+       return userService.register(user);
   }
 }

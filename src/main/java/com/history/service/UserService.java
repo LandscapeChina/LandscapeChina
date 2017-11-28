@@ -9,6 +9,7 @@ import com.history.utils.project.YunZhiXunPropertiesUtil;
 import com.history.utils.yunzhixun.Send;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -17,9 +18,9 @@ public class UserService {
    private Logger log=Logger.getLogger(UserService.class);
    private  String para=null;
    @Resource
-    UserDao userDao;
+    private UserDao userDao;
     //发送验证码
-    public int getCode(User user){
+    public String getCode(User user){
         Send send=new Send();
         String accountSid= YunZhiXunPropertiesUtil.getProperty("accountSid");
         String token= YunZhiXunPropertiesUtil.getProperty("token");
@@ -61,7 +62,16 @@ public class UserService {
         }
     }
     //注册
-    public int register(User user){
-        return userDao.register(user);
+    @Transactional(rollbackFor=Exception.class)
+    public String register(User user){
+        if (user.getCode()!=null||para!=null){
+            if (user.getCode().equals(para)){
+                if(userDao.register(user)==1){
+                    return ConstansUtil.SUCCESS;
+                }
+            }
+        }
+        return ConstansUtil.FAIL;
+
     }
 }

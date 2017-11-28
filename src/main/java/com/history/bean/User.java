@@ -5,14 +5,24 @@ public class User {
     private String id;
     private String password;
     private String account;
+    private String code;
     public User() {
     }
 
-    public User(String tel, String id, String password, String account) {
+    public User(String tel, String id, String password, String account,String code) {
         this.tel = tel;
         this.id = id;
         this.password = password;
         this.account = account;
+        this.code=code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getTel() {

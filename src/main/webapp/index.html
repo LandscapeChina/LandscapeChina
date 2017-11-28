@@ -3,14 +3,10 @@
 <head>
     <title>登录</title>
     <link rel="stylesheet" href="/css/bootstrap.css" />
-    <link rel="stylesheet" href="/css/icon.css" />
-    <link rel="stylesheet" href="/css/easyui.css" />
     <style>
-        #root{
-            height: 100%;
-            position: relative;
-            background-image: url("/img/register_3.jpg");
-            background-size: cover;
+        #header{
+            height: 10%;
+            background-color: #ECEFF4;
         }
         #d2{
             border-radius: 15px;
@@ -18,7 +14,7 @@
             width:300px;
             height: 400px;
             position: absolute;
-            left: 70%;
+            left: 60%;
             top:15%;
         }
         h1{
@@ -52,8 +48,10 @@
             border: 1px gainsboro solid;
             border-radius: 0px 0px 5px 0px;
         }
-        #d4{
-            margin-top: 15px;
+        #root{
+            height: 80%;
+            background-image: url("/img/register_1.jpg");
+            background-size: cover;
         }
         #d6{
             padding-left: 10px;
@@ -65,13 +63,50 @@
             border-radius: 5px;
         }
 
-        #msg{
-            font-size: 5px;
-            display: flex;
-            align-items: center;
-            color: red;
-            padding-left: 10px;
-            height: 8px;
+        p{
+           text-align: center;
+            font-size: 15px;
+        }
+        #wb{
+            height: 10%;
+            background-color: #ECEFF4;
+        }
+        .footnav{
+            position: fixed;
+            bottom: 32px;
+            padding: 12px 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+        }
+        .footnav a{
+            color: #000;
+            margin: 0 15px;
+        }
+        .foot{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        a:hover{
+            text-decoration: none;
+        }
+        .back1{
+            height: 80%;
+            background-image: url("/img/register_1.jpg");
+            background-size: cover;
+
+        .back2{
+            height: 80%;
+            background-image: url("/img/register_2.jpg");
+            background-size: cover;
+        }
+        .back3{
+            height: 80%;
+            background-image: url("/img/register_3.jpg");
+            background-size: cover;
         }
     </style>
     <script type="text/javascript" src="/js/jquery.js"></script>
@@ -80,33 +115,47 @@
 
 </head>
 <body>
+<div id="header">
+    <img style="height: 100%;display: inline-block;" src="img/shanshuizhongguo.PNG">
+   <img style="height: 70%;margin-top: 14px;" src="img/narenshuo.PNG">
+</div>
 <div id="root">
         <div  id="d2" >
             <h1>山 水 中 国</h1>
             <form id="f1" method="post" class="form-group">
                 <div class="input-group" style="margin-top: 10px">
-                    <span class="input-group-addon">手机</span> <input type="text" name="tel" id="tel" placeholder="请输入手机号 " class="form-control">
+                    <span class="input-group-addon">手机</span> <input type="text" onchange="testTel()" name="tel" id="tel" placeholder="请输入手机号 " class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px">
-                    <span class="input-group-addon">昵称</span> <input type="text"   name="account" placeholder="请输入昵称" class="form-control">
+                    <span class="input-group-addon">昵称</span> <input type="text"  onchange="testAccount()" id="account" name="account" placeholder="请输入昵称" class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px">
-                    <span class="input-group-addon">密码</span> <input type="password"   name="password" placeholder="请输入密码" class="form-control">
+                    <span class="input-group-addon">密码</span> <input type="password1"  id="pwd1" onchange="testPwd1()" name="password" placeholder="请输入密码" class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px">
-                    <span class="input-group-addon">密码</span> <input type="password"  name="password" placeholder="请再次输入密码" class="form-control">
+                    <span class="input-group-addon">密码</span> <input type="password" id="pwd2" onchange="testPwd2()"  name="password" placeholder="请再次输入密码" class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px;width: 150px">
-                    <span class="input-group-addon">验证码</span> <input type="text"   name="" placeholder="验证码"  class="form-control">
+                    <span class="input-group-addon">验证码</span> <input type="text" id="code" onchange="testCode()"   name="code" placeholder="验证码"  class="form-control">
 
                 </div>
                 <button class="btn btn-info" onclick="setTime(this)" id="identcode" disabled style="position: absolute;left: 170px;top: 266px;">获取验证码</button>
             </form>
-            <div id="d6"><button id="register" class="btn btn-success btn-block" onclick="register()"><span id="font">登&nbsp;&nbsp;&nbsp;录</span></button></div>
+            <div id="d6"><button id="register" class="btn btn-success btn-block" onclick="register()"><span id="font">注&nbsp;&nbsp;&nbsp;册</span></button></div>
         </div>
+</div>
+<div id="wb">
+    <div class="footnav">
+        <a href="#">关于我们</a>
+        <a href="#">联系我们</a>
+    </div>
+    <div class="foot">
+        <p>©版权所有 山水中国</p>
+    </div>
 </div>
 </body>
 <script src="/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/history/Util.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/history/index.js" type="text/javascript" charset="utf-8"></script>
 </html>
 
