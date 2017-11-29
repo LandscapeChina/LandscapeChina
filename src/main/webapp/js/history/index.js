@@ -21,8 +21,10 @@ function setTime(obj) {
     if (countdown == 60) {
         $.post("Code.html", {tel: tel}, function (data) {
             var response=replaceStr(data);
-            if ("SUCCESS"!=response) {
+            if ("FAIL"==response) {
                 layer.alert("服务错误，正在联系管理员处理，请稍后！", {title: '系统提示', icon: 0});
+            }else if("SUCCESS"!=response){
+                layer.alert(response,{title:'系统提示',icon:0});
             }
         });
     }

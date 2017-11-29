@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 @Controller
 public class UserController {
     @Resource
-    UserService userService;
+    private UserService userService;
     //获取验证码
     @RequestMapping("Code.html")
     @ResponseBody

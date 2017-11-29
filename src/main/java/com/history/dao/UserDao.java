@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface UserDao {
     //注册
     public int register(User user);
+    //查询手机号是否有被注册过
+    public User findTel(User user);
 }

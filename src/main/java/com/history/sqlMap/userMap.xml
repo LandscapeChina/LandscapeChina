@@ -6,4 +6,7 @@
     <insert id="register" parameterType="com.history.bean.User">
         INSERT INTO users(tel,account,password) VALUES(#{tel},#{account},#{password})
     </insert>
+    <select id="findTel" parameterType="com.history.bean.User" resultType="com.history.bean.User">
+        SELECT tel FROM users WHERE tel=#{tel}
+    </select>
 </mapper>
