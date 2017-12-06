@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.history.bean.User;
 import com.history.dao.UserDao;
 import com.history.utils.project.ConstansUtil;
+import com.history.utils.project.Md5Util;
 import com.history.utils.project.RedisUtil;
 import com.history.utils.project.YunZhiXunPropertiesUtil;
 import com.history.utils.yunzhixun.Send;
@@ -82,6 +83,8 @@ public class UserService {
         List<String> list= RedisUtil.jedis.hmget(user.getTel(),"tel","num","code");
         if (user.getCode()!=null||list.get(2)!=null){
             if (user.getCode().equals(list.get(2))){
+                //MD5加密
+                user.setPassword(Md5Util.md5(user.getPassword()));
                 if(userDao.register(user)==1){
                     return ConstansUtil.SUCCESS;
                 }
