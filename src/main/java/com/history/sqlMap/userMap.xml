@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.history.dao.UserDao">
     <insert id="register" parameterType="com.history.bean.User">
-        INSERT INTO users(tel,account,password) VALUES(#{tel},#{account},#{password})
+        INSERT INTO users(tel,account,password,createTime) VALUES(#{tel},#{account},#{password},NOW());
     </insert>
     <select id="findTel" parameterType="com.history.bean.User" resultType="com.history.bean.User">
         SELECT tel FROM users WHERE tel=#{tel}

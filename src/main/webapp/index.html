@@ -8,7 +8,16 @@
             height: 10%;
             background-color: #ECEFF4;
         }
-        #d2{
+        .d1{
+            border-radius: 15px;
+            background-color: #daeeff;
+            width:300px;
+            height: 250px;
+            position: absolute;
+            left: 60%;
+            top:30%;
+        }
+        .d2{
             border-radius: 15px;
             background-color: #daeeff;
             width:300px;
@@ -56,6 +65,7 @@
         #d6{
             padding-left: 10px;
             padding-right: 10px;
+            margin-top: 5px;
         }
         button{
             margin-top: 0px;
@@ -93,20 +103,16 @@
         a:hover{
             text-decoration: none;
         }
-        .back1{
-            height: 80%;
-            background-image: url("/img/register_1.jpg");
-            background-size: cover;
-
-        .back2{
-            height: 80%;
-            background-image: url("/img/register_2.jpg");
-            background-size: cover;
+        #loginShow{
+            text-decoration: none;
+            color: #1E9FFF;
         }
-        .back3{
-            height: 80%;
-            background-image: url("/img/register_3.jpg");
-            background-size: cover;
+        #f2{
+            width: 300px;
+            padding-left: 10px;
+            padding-right:10px;
+            display: block;
+            margin-top: 5px;
         }
     </style>
     <script type="text/javascript" src="/js/jquery.js"></script>
@@ -120,7 +126,7 @@
    <img style="height: 70%;margin-top: 14px;" src="img/narenshuo.PNG">
 </div>
 <div id="root">
-        <div  id="d2" >
+        <div id="d2" class="d2" >
             <h1>山 水 中 国</h1>
             <form id="f1" method="post" class="form-group">
                 <div class="input-group" style="margin-top: 10px">
@@ -130,7 +136,7 @@
                     <span class="input-group-addon">昵称</span> <input type="text"  onchange="testAccount()" id="account" name="account" placeholder="请输入昵称" class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px">
-                    <span class="input-group-addon">密码</span> <input type="password1"  id="pwd1" onchange="testPwd1()" name="password" placeholder="请输入密码" class="form-control">
+                    <span class="input-group-addon">密码</span> <input type="password"  id="pwd1" onchange="testPwd1()" name="password1" placeholder="请输入密码" class="form-control">
                 </div>
                 <div  class="input-group" style="margin-top: 10px">
                     <span class="input-group-addon">密码</span> <input type="password" id="pwd2" onchange="testPwd2()"  name="password" placeholder="请再次输入密码" class="form-control">
@@ -140,10 +146,21 @@
 
                 </div>
                 <button class="btn btn-info" onclick="setTime(this)" id="identcode" disabled style="position: absolute;left: 170px;top: 266px;">获取验证码</button>
+
             </form>
             <div id="d6"><button id="register" class="btn btn-success btn-block" onclick="register()"><span id="font">注&nbsp;&nbsp;&nbsp;册</span></button></div>
+            <div id="show" style="margin-left: 120px">已有账号?>>><a href="#" id="loginShow">登&nbsp;&nbsp;录</a></div>
         </div>
 </div>
+<!--登录-->
+<form id="f2" class="form-group">
+    <div class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon">手机</span> <input type="text" name="tel" id="telLogin" placeholder="请输入手机号或昵称" class="form-control">
+    </div>
+    <div  class="input-group" style="margin-top: 10px">
+        <span class="input-group-addon">密码</span> <input type="password"  id="pwd" name="password1" placeholder="请输入密码" class="form-control">
+    </div>
+</form>
 <div id="wb">
     <div class="footnav">
         <a href="#">关于我们</a>

@@ -24,6 +24,11 @@ public class UserService {
     private UserDao userDao;
     //发送验证码
     public String getCode(User user){
+        //查询该电话号码是否被注册
+        User user1= userDao.findTel(user);
+        if (user1!=null){
+            return "该手机号已被注册！";
+        }
         Send send=new Send();
         String accountSid= YunZhiXunPropertiesUtil.getProperty("accountSid");
         String token= YunZhiXunPropertiesUtil.getProperty("token");
@@ -36,22 +41,17 @@ public class UserService {
             e.printStackTrace();
         }
         //获取今日发送验证码的次数
-        String number=null;
+        List<String> list= RedisUtil.jedis.hmget(user.getTel(),"num","code");
+        //获取次数
+        String number= list.get(0);
         String resp=null;
         if (number!=null){
-            List<String> list= RedisUtil.jedis.hmget(user.getTel(),"tel","num","code");
-                number = list.get(1);
             int num=Integer.parseInt(number);
            if (num<5){
-               //查询该电话号码是否被注册
-               User user1= userDao.findTel(user);
-               if (user1!=null){
-                   return "该手机号已被注册！";
-               }
                String response=send.sendCode(accountSid, token, appId, templateId, user.getTel(), para);
                 resp=(String) JSON.parseObject(response).getJSONObject("resp").get("respCode");
            }else{
-               return "一天只能发送五次哦！";
+               return "一个手机号一天只能发送五次哦！";
            }
         }
         if (number==null){
@@ -60,8 +60,7 @@ public class UserService {
         }
         if (resp.equals(ConstansUtil.SUCCESS_CODE)){
             log.info("发送验证码手机号为："+user.getTel()+",验证码为："+para);
-            Map<String,String> map=new HashMap<>();
-            map.put("tel",user.getTel());
+            Map<String,String> map=new HashMap<>(2);
             map.put("code",para);
             if (number!=null){
                 int num=Integer.parseInt(number);
@@ -70,7 +69,7 @@ public class UserService {
                 RedisUtil.jedis.hmset(user.getTel(),map);
             }else {
                 map.put("num",String.valueOf(1));
-                RedisUtil.jedis.hmset("user",map);
+                RedisUtil.jedis.hmset(user.getTel(),map);
             }
             return ConstansUtil.SUCCESS;
         }else{
@@ -80,9 +79,19 @@ public class UserService {
     //注册
     @Transactional(rollbackFor=Exception.class)
     public String register(User user){
-        List<String> list= RedisUtil.jedis.hmget(user.getTel(),"tel","num","code");
-        if (user.getCode()!=null||list.get(2)!=null){
-            if (user.getCode().equals(list.get(2))){
+        //查询该电话号码是否被注册
+        User user1= userDao.findTel(user);
+        if (user1!=null){
+            return "该手机号已被注册！";
+        }
+        try {
+            RedisUtil.afterPropertiesSet();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<String> list= RedisUtil.jedis.hmget(user.getTel(),"num","code");
+        if (user.getCode()!=null||list.get(1)!=null){
+            if (user.getCode().equals(list.get(1))){
                 //MD5加密
                 user.setPassword(Md5Util.md5(user.getPassword()));
                 if(userDao.register(user)==1){
