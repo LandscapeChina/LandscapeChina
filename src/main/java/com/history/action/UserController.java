@@ -19,9 +19,16 @@ public class UserController {
        String code=userService.getCode(user);
        return  code;
   }
-  @RequestMapping("register.html")
+  //注册
+  @RequestMapping("Register.html")
   @ResponseBody
   public String register(User user){
        return userService.register(user);
+  }
+  //登录
+ @RequestMapping("Login.html")
+ @ResponseBody
+  public String login(User user){
+     return userService.login(user);
   }
 }

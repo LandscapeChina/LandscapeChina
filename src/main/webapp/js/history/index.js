@@ -89,35 +89,47 @@ function testCode() {
     return flag;
 }
 $("#register").click(function () {
-    if($("#pwd1").val()!=$("#pwd2").val()){
-        layer.alert('两次密码输入不一致！', {title: '系统提示', icon: 0});
-    }else if(!(!testTel()||!testAccount()||!testPwd1()||!testPwd2()||!testCode())){
-        var form=$("#f1").serialize();
-        $.post("register.html",form,function (d) {
-            var response=replaceStr(d);
-            if("SUCCESS"==response){
-                layer.alert("注册成功，请登录！", {title: '系统提示', icon: 1});
-            }else{
-                layer.alert("验证码不正确，请重新输入！", {title: '系统提示', icon: 0});
-            }
-        })
-    }
-});
-//显示登录界面
-$("#loginShow").click(function () {
-    if($("#loginShow").html()=="登&nbsp;&nbsp;录"){
-        $("#d2").removeClass("d2");
-        $("#d2").addClass("d1");
-        $("#f2").html($("#f1").html());
-        $("#f1").html($("#f2").html());
-        $("#font").html("登&nbsp;&nbsp;&nbsp;录");
-        $("#show").html('还没有账号?>>><a href="#" id="loginShow">注&nbsp;&nbsp;册</a>');
+    var form = $("#f1").serialize();
+    form=decodeURIComponent(form,true);
+    if($("#font").html()=="注&nbsp;&nbsp;册") {
+        if ($("#pwd1").val() != $("#pwd2").val()) {
+            layer.alert('两次密码输入不一致！', {title: '系统提示', icon: 0});
+        } else if (!(!testTel() || !testAccount() || !testPwd1() || !testPwd2() || !testCode())) {
+            $.post("Register.html", form, function (d) {
+                var response = replaceStr(d);
+                if ("SUCCESS" == response) {
+                    layer.alert("注册成功，请登录！", {title: '系统提示', icon: 1});
+                } else {
+                    layer.alert("验证码不正确，请重新输入！", {title: '系统提示', icon: 0});
+                }
+            });
+        }
     }else {
-        $("#d2").removeClass("d1");
-        $("#d2").addClass("d2");
-        $("#f2").html($("#f1").html());
-        $("#f1").html($("#f2").html());
-        $("#font").html("注&nbsp;&nbsp;&nbsp;册");
-        $("#show").html('已有账号?>>><a href="#" id="loginShow">登&nbsp;&nbsp;录</a>');
+        $.post("Login.html", form, function(d){
+            var response = replaceStr(d);
+            if ("SUCCESS" == response) {
+                layer.alert("注册成功，请登录！", {title: '系统提示', icon: 1});
+            } else {
+                layer.alert("用户名或密码错误，请重新输入！", {title: '系统提示', icon: 0});
+            }
+        });
     }
 });
+//显示登录页面
+function loginShow() {
+    $("#d2").removeClass("d2");
+    $("#d2").addClass("d1");
+    $("#f3").html($("#f1").html());
+    $("#f1").html($("#f2").html());
+    $("#font").html("登&nbsp;&nbsp;&nbsp;录");
+    $("#show").html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="registerShow" onclick="registerShow()">注&nbsp;&nbsp;&nbsp;册</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="searchPassword()">找回密码</a>');
+}
+//显示注册页面
+function registerShow() {
+    $("#d2").removeClass("d1");
+    $("#d2").addClass("d2");
+    $("#f1").html($("#f3").html());
+    $("#f3").html($("#f2").html());
+    $("#font").html("注&nbsp;&nbsp;&nbsp;册");
+    $("#show").html('已有账号?>>><a href="#" id="loginShow" onclick="loginShow()">登&nbsp;&nbsp;&nbsp;录</已有账号a>');
+}

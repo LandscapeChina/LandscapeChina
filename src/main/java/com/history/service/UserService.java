@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -100,6 +101,20 @@ public class UserService {
             }
         }
         return ConstansUtil.FAIL;
-
+    }
+    //登录
+    public String login(User user){
+       boolean flag=Pattern.matches(ConstansUtil.TELEPHONE_VALIDATE,user.getTel());
+       if (!flag){
+           user.setAccount(user.getTel());
+           user.setTel(null);
+       }
+       user.setPassword(Md5Util.md5(user.getPassword()));
+       User user1=userDao.login(user);
+       if (userDao.login(user)!=null){
+           return ConstansUtil.SUCCESS;
+       }else {
+           return ConstansUtil.FAIL;
+       }
     }
 }
