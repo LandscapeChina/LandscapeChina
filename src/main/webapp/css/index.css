@@ -1,0 +1,110 @@
+#header{
+    height: 10%;
+    background-color: #ECEFF4;
+}
+.d1{
+    border-radius: 15px;
+    background-color: #daeeff;
+    width:300px;
+    height: 260px;
+    position: absolute;
+    left: 60%;
+    top:30%;
+}
+.d2{
+    border-radius: 15px;
+    background-color: #daeeff;
+    width:300px;
+    height: 400px;
+    position: absolute;
+    left: 60%;
+    top:15%;
+}
+h1{
+
+    font-style: normal;
+    font-family: 微软雅黑;
+    text-align: center;
+    color: grey;
+    margin-top: 20px;
+    font-weight: 600;
+
+}
+#font{
+    font-family: 微软雅黑;
+    color: white;
+}
+#f1{
+    width: 300px;
+    padding-left: 10px;
+    padding-right:10px;
+    display: block;
+    margin-top: 5px;
+}
+input[type=text]{
+    border: 1px gainsboro solid;
+    border-radius: 0px 5px 0px 0px;
+}
+
+input[type=password]{
+
+    border: 1px gainsboro solid;
+    border-radius: 0px 0px 5px 0px;
+}
+#root{
+    height: 80%;
+    background-image: url("/img/register_1.jpg");
+    background-size: cover;
+}
+#d6{
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 5px;
+}
+button{
+    margin-top: 0px;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+p{
+    text-align: center;
+    font-size: 15px;
+}
+#wb{
+    height: 10%;
+    background-color: #ECEFF4;
+}
+.footnav{
+    position: fixed;
+    bottom: 32px;
+    padding: 12px 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.footnav a{
+    color: #000;
+    margin: 0 15px;
+}
+.foot{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+a:hover{
+    text-decoration: none;
+}
+#loginShow{
+    text-decoration: none;
+    color: #1E9FFF;
+}
+#f2{
+    width: 300px;
+    padding-left: 10px;
+    padding-right:10px;
+    display: block;
+    margin-top: 5px;
+}
